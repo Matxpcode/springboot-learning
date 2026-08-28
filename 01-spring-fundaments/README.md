@@ -5,7 +5,7 @@
 ## 🛠 Tecnologías y Versiones
 
 - **Java:** 21
-- **Spring Boot:** 4.1.1 (Spring Framework 6.x)
+- **Spring Boot:** 4.1.1
 - **Build Tool:** Maven 3.9.11
 - **Entorno:** WSL (Windows Subsystem for Linux)
 
