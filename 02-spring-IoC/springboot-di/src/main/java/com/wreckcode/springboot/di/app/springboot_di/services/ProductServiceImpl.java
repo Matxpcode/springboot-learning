@@ -28,10 +28,12 @@ public class ProductServiceImpl implements ProductService{
 
             //Usaremos un clone en lugar de un objeto product
             // Product newProduct = new Product(p.getId(), p.getName(), priceImp.longValue());
-            Product newProduct = (Product) p.clone();
-            newProduct.setPrice(priceImp.longValue());
+            // Product newProduct = (Product) p.clone();
+            // newProduct.setPrice(priceImp.longValue());
+            // return newProduct;
+            p.setPrice(priceImp.longValue());
+            return p;
 
-            return newProduct;
         }).collect(Collectors.toList());
     }
 
