@@ -25,12 +25,15 @@ public class ProductServiceImpl implements ProductService{
     public List<Product> findAll(){
         return repository.findAll().stream().map(p->{   //300
             Double priceImp = p.getPrice()*1.25d;   //375
-
             //Usaremos un clone en lugar de un objeto product
             // Product newProduct = new Product(p.getId(), p.getName(), priceImp.longValue());
+            
+            //1. para evitar mutabilidad          
             // Product newProduct = (Product) p.clone();
             // newProduct.setPrice(priceImp.longValue());
             // return newProduct;
+
+            //2. para probar requestScope / sessionScope
             p.setPrice(priceImp.longValue());
             return p;
 

@@ -5,12 +5,12 @@ import java.util.List;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.context.annotation.SessionScope;
 
 import com.wreckcode.springboot.di.app.springboot_di.models.Product;
 
 @Primary
-@RequestScope
+@SessionScope
 @Repository("productList")     //component para datos
 public class ProductRepositoryImpl implements ProductRepository {
     //1.definimos la lista (simula la BD)
