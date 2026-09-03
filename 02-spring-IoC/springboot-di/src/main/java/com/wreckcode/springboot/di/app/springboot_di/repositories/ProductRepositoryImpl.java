@@ -3,11 +3,13 @@ package com.wreckcode.springboot.di.app.springboot_di.repositories;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import com.wreckcode.springboot.di.app.springboot_di.models.Product;
 
-@Repository     //component para datos
+@Primary
+@Repository("productList")     //component para datos
 public class ProductRepositoryImpl implements ProductRepository {
     //1.definimos la lista (simula la BD)
     private List<Product> data;

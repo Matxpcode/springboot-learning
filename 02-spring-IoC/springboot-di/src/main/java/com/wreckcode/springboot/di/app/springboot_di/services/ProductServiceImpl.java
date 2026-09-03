@@ -3,6 +3,7 @@ package com.wreckcode.springboot.di.app.springboot_di.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.wreckcode.springboot.di.app.springboot_di.models.Product;
@@ -16,7 +17,7 @@ public class ProductServiceImpl implements ProductService{
     //Ahora spring gestiona la instancia
     private final ProductRepository repository; //llamo a la intefaz repository
 
-    ProductServiceImpl(ProductRepository repository) {  //inyeccion del component como parametro
+    ProductServiceImpl(@Qualifier("productList") ProductRepository repository) {  //inyeccion del component como parametro
         this.repository = repository;
     }
 

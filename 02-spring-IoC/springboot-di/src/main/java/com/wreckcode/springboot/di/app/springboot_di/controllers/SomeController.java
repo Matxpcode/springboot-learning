@@ -21,7 +21,7 @@ public class SomeController {
         this.service = service;
     }
 
-    @GetMapping("/list")
+    @GetMapping({"","/","/list"})
     public List<Product> list() {
         return service.findAll();
     }
