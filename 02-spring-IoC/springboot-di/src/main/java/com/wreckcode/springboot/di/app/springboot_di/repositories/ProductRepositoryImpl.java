@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import com.wreckcode.springboot.di.app.springboot_di.models.Product;
 
+@Primary 
 // @RequestScope
-@Primary
 @Repository("productList")     //component para datos
 public class ProductRepositoryImpl implements ProductRepository {
     //1.definimos la lista (simula la BD)

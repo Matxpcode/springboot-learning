@@ -26,7 +26,7 @@ public class ProductServiceImpl implements ProductService{
     //Ahora spring gestiona la instancia
     private final ProductRepository repository; //llamo a la intefaz repository
 
-    ProductServiceImpl(@Qualifier("productList") ProductRepository repository, Environment environment) {  //inyeccion del component como parametro
+    ProductServiceImpl(@Qualifier("productJson") ProductRepository repository, Environment environment) {  //inyeccion del component como parametro
         this.repository = repository;
         this.environment = environment;
     }
