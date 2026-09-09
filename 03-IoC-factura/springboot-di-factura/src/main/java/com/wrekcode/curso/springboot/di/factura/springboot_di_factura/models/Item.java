@@ -22,4 +22,8 @@ public class Item {
     public void setQuantify(Integer quantify) {
         this.quantify = quantify;
     }
+
+    public int getImporte(){
+        return quantify*product.getPrice();
+    }
 }

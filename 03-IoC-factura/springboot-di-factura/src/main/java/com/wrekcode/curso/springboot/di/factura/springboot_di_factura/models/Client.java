@@ -5,13 +5,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Client {
-    @Value("${client.name}")
-    private String name;
+    private final String name;
 
-    @Value("${client.lastname}")
-    private String lastname;
+    private final String lastname;
     
-    public Client(String name, String lastname) {
+    public Client(@Value("${client.name}") String name,@Value("${client.lastname}") String lastname) {
         this.name = name;
         this.lastname = lastname;
     }
@@ -19,13 +17,8 @@ public class Client {
     public String getName() {
         return name;
     }
-    public void setName(String name) {
-        this.name = name;
-    }
+
     public String getLastname() {
         return lastname;
-    }
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
     }
 }

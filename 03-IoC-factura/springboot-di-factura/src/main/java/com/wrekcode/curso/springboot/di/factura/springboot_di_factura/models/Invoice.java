@@ -10,13 +10,12 @@ import org.springframework.stereotype.Component;
 public class Invoice {
     private final Client client;
 
-    @Value("${invoice.description}")
     private final String description;
  
     private final List<Item> items;
 
     //Inyeccion de dependencias
-    Invoice(Client client,String description,@Qualifier("listadoItemsDeporte")List<Item> items) {
+    Invoice(Client client,@Value("${invoice.description}") String description,@Qualifier("listadoItemsDeporte") List<Item> items) {
         this.client = client;
         this.description=description;
         this.items = items;
@@ -34,4 +33,7 @@ public class Invoice {
         return items;
     }
 
+    public int getTotal(){
+        return 0;
+    }
 }

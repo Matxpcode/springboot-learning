@@ -11,7 +11,7 @@ import com.wrekcode.curso.springboot.di.factura.springboot_di_factura.models.Ite
 import com.wrekcode.curso.springboot.di.factura.springboot_di_factura.models.Product;
 
 @Configuration 
-@PropertySource("classpath:data.properties") 
+@PropertySource(value="classpath:data.properties",encoding="UTF-8") 
 public class AppConfig {
     
     //Creamos un componente de fabrica
