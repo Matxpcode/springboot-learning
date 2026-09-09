@@ -2,29 +2,36 @@ package com.wrekcode.curso.springboot.di.factura.springboot_di_factura.models;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+@Component 
 public class Invoice {
-    private Client client;
-    private String description;
-    private List<Item> items;
+    private final Client client;
+
+    @Value("${invoice.description}")
+    private final String description;
+ 
+    private final List<Item> items;
+
+    //Inyeccion de dependencias
+    Invoice(Client client,String description,@Qualifier("listadoItemsDeporte")List<Item> items) {
+        this.client = client;
+        this.description=description;
+        this.items = items;
+    }
 
     public Client getClient() {
         return client;
     }
-    public void setClient(Client client) {
-        this.client = client;
-    }
+
     public String getDescription() {
         return description;
     }
-    public void setDescription(String description) {
-        this.description = description;
-    }
+
     public List<Item> getItems() {
         return items;
     }
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
-    
+
 }
