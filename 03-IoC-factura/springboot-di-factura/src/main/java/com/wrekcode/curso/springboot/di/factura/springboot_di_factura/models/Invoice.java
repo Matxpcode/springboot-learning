@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+
 @Component
 public class Invoice {
   private final Client client;
@@ -14,12 +17,28 @@ public class Invoice {
 
   private final List<Item> items;
 
-  // Inyeccion de dependencias
+  // Inyeccion de dependencias - Contructor
   Invoice(Client client, @Value("${invoice.description.office}") String description,
       @Qualifier("default") List<Item> items) {
     this.client = client;
-    this.description = description;
+    this.description = description; // Factura de oficina
     this.items = items;
+  }
+
+  // PostConstructor
+  @PostConstruct
+  public void init() {
+    // Aqui no se inyecta nada
+    // se usa las variables que el constructor ya creo
+    System.out.println("Factura lista para: " + client.getName());
+    System.out.println(
+        description.concat(" del cliente: ").concat(client.getName()).concat(" ").concat(client.getLastname()));
+  }
+
+  // Predestroy
+  @PreDestroy
+  public void destroy() {
+    System.out.println("Destruyendo el componente o bean invoice!");
   }
 
   public Client getClient() {
