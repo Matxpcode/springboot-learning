@@ -5,17 +5,23 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.RequestScope;
+
+//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 
 @Component
+@RequestScope
+// @JsonIgnoreProperties({ "targetSource", "advisors" })
 public class Invoice {
-  private final Client client;
 
-  private final String description;
+  private Client client;
 
-  private final List<Item> items;
+  private String description;
+
+  private List<Item> items;
 
   // Inyeccion de dependencias - Contructor
   Invoice(Client client, @Value("${invoice.description.office}") String description,
@@ -30,9 +36,9 @@ public class Invoice {
   public void init() {
     // Aqui no se inyecta nada
     // se usa las variables que el constructor ya creo
-    System.out.println("Factura lista para: " + client.getName());
-    System.out.println(
-        description.concat(" del cliente: ").concat(client.getName()).concat(" ").concat(client.getLastname()));
+    client.setName(client.getName().concat(" Pepe"));
+    description = description.concat(" del cliente: ").concat(client.getName()).concat(" ")
+        .concat(client.getLastname());
   }
 
   // Predestroy
@@ -45,14 +51,27 @@ public class Invoice {
     return client;
   }
 
+  public void setClient(Client client) {
+    this.client = client;
+  }
+
   public String getDescription() {
     return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
   public List<Item> getItems() {
     return items;
   }
 
+  public void setItems(List<Item> items) {
+    this.items = items;
+  }
+
+  // Inyeccion de dependencias - Contructor
   public int getTotal() {
 
     // forma 1: usando foreach
